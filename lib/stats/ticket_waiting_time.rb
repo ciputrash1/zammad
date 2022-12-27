@@ -41,10 +41,10 @@ class Stats::TicketWaitingTime
               end
 
     {
-      handling_time:     handling_time,
-      average_per_agent: average_per_agent,
-      state:             state,
-      percent:           percent,
+      handling_time:,
+      average_per_agent:,
+      state:,
+      percent:,
     }
   end
 

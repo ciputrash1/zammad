@@ -97,8 +97,8 @@ class SecureMailing::SMIME::Incoming < SecureMailing::Backend::Handler
     end
 
     article_preferences[:security][:encryption] = {
-      success: success,
-      comment: comment,
+      success:,
+      comment:,
     }
   end
 
@@ -128,8 +128,8 @@ class SecureMailing::SMIME::Incoming < SecureMailing::Backend::Handler
     end
 
     article_preferences[:security][:sign] = {
-      success: success,
-      comment: comment,
+      success:,
+      comment:,
     }
   end
 

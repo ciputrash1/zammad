@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Profile > Language', type: :system do
   let(:group)        { create(:group) }
-  let(:session_user) { create(:admin, preferences: { locale: locale }, groups: Group.all) }
+  let(:session_user) { create(:admin, preferences: { locale: }, groups: Group.all) }
   let(:path)         { 'profile/language' }
 
   shared_examples 'having translated content in' do |current_element|
@@ -139,7 +139,7 @@ RSpec.describe 'Profile > Language', type: :system do
       let(:title)              { 'preferences lang check #2' }
       let(:translated_content) { title }
       let(:user_group)         { Group.lookup(name: 'Users') }
-      let(:ticket)             { create(:ticket, group: user_group, title: title) }
+      let(:ticket)             { create(:ticket, group: user_group, title:) }
 
       translated_element = '.content.active .sidebar-content'
 
@@ -234,7 +234,7 @@ RSpec.describe 'Profile > Language', type: :system do
       let(:title)              { 'preferences lang check #2' }
       let(:translated_content) { title }
       let(:user_group)         { Group.lookup(name: 'Users') }
-      let(:ticket)             { create(:ticket, group: user_group, title: title) }
+      let(:ticket)             { create(:ticket, group: user_group, title:) }
 
       translated_element = '.content.active .sidebar-content'
 

@@ -8,20 +8,20 @@ class Sequencer::Unit::Import::Zendesk::User::Mapping < Sequencer::Unit::Base
   def process
     provide_mapped do
       {
-        login:           login,
+        login:,
         firstname:       resource.name,
         lastname:        '', # makes sure name guessing is triggered for updating existing users. Which happens when importing a big list of users due to overlapping pagination.
         email:           resource.email,
         phone:           resource.phone,
-        password:        password,
+        password:,
         active:          (!resource.suspended && resource.active) || false,
-        groups:          groups,
-        roles:           roles,
+        groups:,
+        roles:,
         note:            resource.notes,
         verified:        resource.verified,
-        organization_id: organization_id,
+        organization_id:,
         last_login:      resource.last_login_at,
-        image_source:    image_source,
+        image_source:,
       }
     end
   end

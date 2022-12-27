@@ -110,27 +110,27 @@ returns
 
     if data['criteria']['owned_by_me'] && owned_by_me
       return {
-        user:     user,
-        channels: channels
+        user:,
+        channels:
       }
     end
     if data['criteria']['owned_by_nobody'] && owned_by_nobody
       return {
-        user:     user,
-        channels: channels
+        user:,
+        channels:
       }
     end
     if data['criteria']['subscribed'] && subscribed
       return {
-        user:     user,
-        channels: channels
+        user:,
+        channels:
       }
     end
     return if !data['criteria']['no']
 
     {
-      user:     user,
-      channels: channels
+      user:,
+      channels:
     }
   end
 
