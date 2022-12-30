@@ -10,11 +10,7 @@ module KnowledgeBaseBreadcrumbHelper
 
     return if objects.empty?
 
-    render 'knowledge_base/public/breadcrumb',
-           {
-             objects:,
-             knowledge_base:
-           }
+    render 'knowledge_base/public/breadcrumb', { objects:, knowledge_base: }
   end
 
   def calculate_breadcrumb_path(object, alternative)

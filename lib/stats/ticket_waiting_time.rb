@@ -40,12 +40,7 @@ class Stats::TicketWaitingTime
                 'bad'
               end
 
-    {
-      handling_time:,
-      average_per_agent:,
-      state:,
-      percent:,
-    }
+    { handling_time:, average_per_agent:, state:, percent: }
   end
 
   def self.average_state(result, _user_id)

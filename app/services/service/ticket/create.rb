@@ -25,7 +25,7 @@ class Service::Ticket::Create < Service::BaseWithCurrentUser
   def create_article(ticket, article_data)
     return if article_data.blank?
 
-    Service::Ticket::Article::Create.new(current_user:).execute(article_data: article_data.to_h.merge!(ticket_id: ticket.id))
+    Service::Ticket::Article::Create.new(current_user: current_user).execute(article_data: article_data.to_h.merge!(ticket_id: ticket.id))
   end
 
   def assign_tags(ticket, tag_data)

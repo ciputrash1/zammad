@@ -539,28 +539,28 @@ RSpec.describe 'User endpoint', type: :request do
 
       it 'is successful for same admin' do
         authorized_destroy_request(
-          requester:,
+          requester: requester,
           requested: requester,
         )
       end
 
       it 'is successful for other admin' do
         authorized_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:admin),
         )
       end
 
       it 'is successful for agent' do
         authorized_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:agent),
         )
       end
 
       it 'is successful for customer' do
         authorized_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:customer),
         )
       end
@@ -572,28 +572,28 @@ RSpec.describe 'User endpoint', type: :request do
 
       it 'is forbidden for same admin' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: requester,
         )
       end
 
       it 'is forbidden for other admin' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:admin),
         )
       end
 
       it 'is forbidden for agent' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:agent),
         )
       end
 
       it 'is forbidden for customer' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:customer),
         )
       end
@@ -605,28 +605,28 @@ RSpec.describe 'User endpoint', type: :request do
 
       it 'is forbidden for admin' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:admin),
         )
       end
 
       it 'is forbidden same agent' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: requester,
         )
       end
 
       it 'is forbidden for other agent' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:agent),
         )
       end
 
       it 'is forbidden for customer' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:customer),
         )
       end
@@ -638,28 +638,28 @@ RSpec.describe 'User endpoint', type: :request do
 
       it 'is forbidden for admin' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:admin),
         )
       end
 
       it 'is forbidden for agent' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:agent),
         )
       end
 
       it 'is forbidden for same customer' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: requester,
         )
       end
 
       it 'is forbidden for other customer' do
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:customer),
         )
       end
@@ -670,7 +670,7 @@ RSpec.describe 'User endpoint', type: :request do
         requester.update!(organization: same_organization)
 
         forbidden_destroy_request(
-          requester:,
+          requester: requester,
           requested: create(:customer, organization: same_organization),
         )
       end

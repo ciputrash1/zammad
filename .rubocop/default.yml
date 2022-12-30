@@ -106,7 +106,7 @@ Style/DefWithParentheses:
   Enabled: false
 
 Style/HashSyntax:
-  EnforcedShorthandSyntax: consistent
+  EnforcedShorthandSyntax: either
 
 Layout/HashAlignment:
   Description: >-

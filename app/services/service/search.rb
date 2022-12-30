@@ -4,26 +4,26 @@ class Service::Search < Service::BaseWithCurrentUser
   def execute(term:, objects:, options: { limit: 10 })
     options[:limit] = 10 if options[:limit].blank?
 
-    perform_search(term:, objects:, options:)
+    perform_search(term: term, objects: objects, options: options)
   end
 
   def perform_search(term:, objects:, options:)
     if SearchIndexBackend.enabled?
       # Performance optimization: some models may allow combining their Elasticsearch queries into one.
-      result_by_model = combined_backend_search(term:, objects:, options:)
+      result_by_model = combined_backend_search(term: term, objects: objects, options: options)
 
       # Other models require dedicated handling, e.g. for permission checks.
-      result_by_model.merge!(models(objects:, direct_search_index: false).index_with do |model|
-        model_search(model:, term:, options:)
+      result_by_model.merge!(models(objects: objects, direct_search_index: false).index_with do |model|
+        model_search(model: model, term: term, options: options)
       end)
 
       # Finally, sort by object priority.
-      models(objects:).map do |model|
+      models(objects: objects).map do |model|
         result_by_model[model]
       end.flatten
     else
-      models(objects:).map do |model|
-        model_search(model:, term:, options:)
+      models(objects: objects).map do |model|
+        model_search(model: model, term: term, options: options)
       end.flatten
     end
   end
@@ -31,7 +31,7 @@ class Service::Search < Service::BaseWithCurrentUser
   # Perform a direct, cross-module Elasticsearch query and map the results by class.
   def combined_backend_search(term:, objects:, options:)
     result_by_model = {}
-    models_with_direct_search_index = models(objects:, direct_search_index: true).map(&:to_s)
+    models_with_direct_search_index = models(objects: objects, direct_search_index: true).map(&:to_s)
     if models_with_direct_search_index
       SearchIndexBackend.search(term, models_with_direct_search_index, options).each do |item|
         klass = "::#{item[:type]}".constantize
@@ -45,7 +45,7 @@ class Service::Search < Service::BaseWithCurrentUser
   # Call the model specific search, which will query Elasticsearch if available,
   #   or the Database otherwise.
   def model_search(model:, term:, options:)
-    model.search({ query: term, current_user:, limit: options[:limit], ids: options[:ids] })
+    model.search({ query: term, current_user: current_user, limit: options[:limit], ids: options[:ids] })
   end
 
   # Get a prioritized list of searchable models
