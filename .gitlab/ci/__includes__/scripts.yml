@@ -5,7 +5,7 @@
     - echo -e "\\e[0Ksection_start:`date +%s`:bundle_install[collapsed=true]\\r\\e[0Kbundle install"
     - bundle config set --local frozen 'true'
     - bundle config set --local path 'vendor'
-    - scl enable devtoolset-7 "bundle install -j $(nproc)"
+    - bundle install -j $(nproc)
     - echo -e "\\e[0Ksection_end:`date +%s`:bundle_install\\r\\e[0K"
   yarn_install:
     - echo -e "\\e[0Ksection_start:`date +%s`:yarn_install[collapsed=true]\\r\\e[0Kyarn install"
